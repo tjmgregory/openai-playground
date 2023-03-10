@@ -8,7 +8,8 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const response = await openai.createTranscription(
-  createReadStream("assets/test_headphones_1.m4a") as any,
+  // @ts-expect-error https://github.com/openai/openai-node/issues/77
+  createReadStream("assets/test_headphones_1.m4a"),
   "whisper-1"
 );
 console.log(response.data);
